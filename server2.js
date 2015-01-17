@@ -41,9 +41,6 @@ app.post('/say', function(request, response) {
   exec("say -v " + voices[random] +" " +to_say);
   response.redirect('/');
 });
-app.get('say', function(request, response) {
-  res.redirect("/");
-});
 console.log("Simple static server listening at http://" + hostname + ":" + port);
 //app.listen(port, hostname);
 server.listen(port, function() {
