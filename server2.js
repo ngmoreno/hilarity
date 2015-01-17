@@ -35,7 +35,10 @@ app.post('/say', function(request, response) {
   if (to_say.length == 0){
     to_say = "lol";
   }
-  exec("say " +to_say);
+  var voices = ['Deranged', 'Trinoids', 'Bahh', 'Bubbles', 'Bruce', 'Victoria', 'Vicki', 'Princess', 'Agnes', 'Kathy', 'Fred', 'Ralph', 'Hysterical' ]
+  var random = Math.floor((Math.random() * ((voices.length + 1) - 0)) + 0);
+ 
+  exec("say -v " + voices[random] +" " +to_say);
   response.redirect('/');
 });
 app.get('say', function(request, response) {
