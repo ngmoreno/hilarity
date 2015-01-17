@@ -4,11 +4,13 @@ var express = require("express"),
     errorHandler = require('errorhandler'),
     methodOverride = require('method-override'),
     hostname = process.env.HOSTNAME || 'localhost',
-    port = parseInt(process.env.PORT, 10) || 4567;
+    port = parseInt(process.env.PORT, 10) || 5000;
 
 
 var sys = require('sys');
 var exec = require('child_process').exec;
+
+var server = require('http').createServer(app)
 function puts(error, stdout,stderr) { sys.puts(stdout)} 
   
 app.get("/", function (req, res) {
@@ -31,6 +33,11 @@ app.post('/say', function(request, response) {
   console.log('say' + request.body.words );
   exec("say " +request.body.words);
 });
-
+app.get('say', function(request, response) {
+  res.redirect("/index.html");
+});
 console.log("Simple static server listening at http://" + hostname + ":" + port);
-app.listen(port, hostname);
+//app.listen(port, hostname);
+server.listen(port, function() {
+    console.log("Listening on " + port);
+});
