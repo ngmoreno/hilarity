@@ -32,9 +32,10 @@ app.use(errorHandler({
 app.post('/say', function(request, response) {
   console.log('say' + request.body.words );
   exec("say " +request.body.words);
+  response.redirect('/');
 });
 app.get('say', function(request, response) {
-  res.redirect("/index.html");
+  res.redirect("/");
 });
 console.log("Simple static server listening at http://" + hostname + ":" + port);
 //app.listen(port, hostname);
