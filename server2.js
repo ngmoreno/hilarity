@@ -30,8 +30,12 @@ app.use(errorHandler({
 }));
 
 app.post('/say', function(request, response) {
-  console.log('say' + request.body.words );
-  exec("say " +request.body.words);
+  var to_say = request.body.words;
+  console.log(to_say + " length is " + to_say.length);
+  if (to_say.length == 0){
+    to_say = "lol";
+  }
+  exec("say " +to_say);
   response.redirect('/');
 });
 app.get('say', function(request, response) {
